@@ -1,42 +1,55 @@
+local sys = require("system")
+
+UI = {}
+
 function displayMenu()
-    print("=======Menu=======")
-    print("1.View Files")
-    print("2.Create New File")
-    print("3.Delete File")
-    print("4.Exit")
-    print("==================")
+    print("=============")
+    print("1. Check Time")
+    print("2. Get Mono Time")
+    print("3. Give Feedback")
+    print("4. Exit")
 end
 
-function option1()
-    print("You Selected Option 1")
+function getTime()
+    local time = sys.gettime()
+    local date = os.date("Current Time: %Y-%m-%d %H:%M:%S", time)
+    print(date)
 end
 
-function option2()
-    print("You Selected Option 2")
+function monoTime()
+    local response = sys.monotime()
+    print(response)
 end
 
-function option3()
-    print("You Selected Option 3")
+function UI.prompt(message)
+    print(message .. " (yes/no):")
+    local response = io.read()
+    if response == "yes" then
+        return true
+    else return false end
 end
 
-function option4()
-    print("Exiting...")
+function uiPrompt()
+    local response = UI.prompt("Do you like lua?")
+        if response == true then 
+            print("Thats great!")
+        else 
+            print("So sad to hear :(")
+        end
 end
 
 while true do
     displayMenu()
-    io.write("Select an Option : ")
+    io.write("Select an Option: ")
     local choice = tonumber(io.read())
 
-    if choice==1 then
-        option1()
-    elseif choice==2 then
-        option2()
-    elseif choice==3 then
-        option3()
-    elseif choice==4 then
-        option4()
-    break
-    else print("Invalid option try again!")
-    end 
+    if choice == 1 then
+        getTime()
+    elseif choice == 2 then
+        monoTime()
+    elseif choice == 3 then
+        uiPrompt()
+    elseif choice == 4 then
+        break
+    end
 end
