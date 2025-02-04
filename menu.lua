@@ -7,7 +7,8 @@ function displayMenu()
     print("1. Check Time")
     print("2. Get Mono Time")
     print("3. Give Feedback")
-    print("4. Exit")
+    print("4. Progress Bar Demo")
+    print("5. Exit")
 end
 
 function getTime()
@@ -15,6 +16,25 @@ function getTime()
     local date = os.date("Current Time: %Y-%m-%d %H:%M:%S", time)
     print(date)
 end
+
+function UI.progressBar(current, total)
+    local widthOfBar = 50
+    local progress = math.floor((current/total) * widthOfBar)
+    local remaining = widthOfBar - progress
+    local bar = "[" .. string.rep("=", progress) .. string.rep(" ", remaining) .. "]"
+    io.write("\r" .. bar .. math.floor((current/total) * 100) .. "%") -- carriage return for progress bar to say on the same line
+    io.flush()
+end
+
+function progressBar()
+    local total = 100
+    for i=1, total do
+        UI.progressBar(i, total)
+        sys.sleep(0.01)
+    end
+    print()
+end
+
 
 function monoTime()
     local response = sys.monotime()
@@ -50,6 +70,7 @@ while true do
     elseif choice == 3 then
         uiPrompt()
     elseif choice == 4 then
+        progressBar()
         break
     end
 end
