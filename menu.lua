@@ -8,7 +8,15 @@ function displayMenu()
     print("2. Get Mono Time")
     print("3. Give Feedback")
     print("4. Progress Bar Demo")
-    print("5. Exit")
+    print("5. Read Key ")
+    print("6. Exit")
+    print("=============")
+end
+
+function sleep()
+    local input = io.read()
+    local gotInput = sys.readkey(input)
+    print(gotInput)
 end
 
 function getTime()
@@ -70,7 +78,10 @@ while true do
     elseif choice == 3 then
         uiPrompt()
     elseif choice == 4 then
+        sleep() -- idk the actual use of this just pushing this commit just incase
+    elseif choice == 4 then
         progressBar()
+    elseif choice==6 then
         break
     end
 end
