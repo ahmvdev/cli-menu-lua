@@ -1,6 +1,6 @@
 local sys = require("system")
 
-UI = {}
+local UI = require("ui")
 
 function displayMenu()
     print("=============")
@@ -8,7 +8,7 @@ function displayMenu()
     print("2. Get Mono Time")
     print("3. Give Feedback")
     print("4. Progress Bar Demo")
-    print("5. Read Key ")
+    print("5. Logs ")
     print("6. Exit")
     print("=============")
 end
@@ -25,14 +25,6 @@ function getTime()
     print(date)
 end
 
-function UI.progressBar(current, total)
-    local widthOfBar = 50
-    local progress = math.floor((current/total) * widthOfBar)
-    local remaining = widthOfBar - progress
-    local bar = "[" .. string.rep("=", progress) .. string.rep(" ", remaining) .. "]"
-    io.write("\r" .. bar .. math.floor((current/total) * 100) .. "%") -- carriage return for progress bar to say on the same line
-    io.flush()
-end
 
 function progressBar()
     local total = 100
@@ -77,8 +69,6 @@ while true do
         monoTime()
     elseif choice == 3 then
         uiPrompt()
-    elseif choice == 4 then
-        sleep() -- idk the actual use of this just pushing this commit just incase
     elseif choice == 4 then
         progressBar()
     elseif choice==6 then
