@@ -39,7 +39,6 @@ while true do
         run = false
         break
     end
-    copas.pause(0.1)
 end
 end)
 
